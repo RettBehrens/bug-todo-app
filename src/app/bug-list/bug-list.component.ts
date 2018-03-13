@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgRedux, select } from '@angular-redux/store';
+import { IBugState } from '../../store/BugStore';
+import { bugTodoAction } from '../../actions/BugAction';
 
 @Component({
   selector: 'app-bug-list',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BugListComponent implements OnInit {
 
-  constructor() { }
+  @select('bugList') bugList;
+  constructor(private ngRedux:NgRedux<IBugState>) {
+
+   }
 
   ngOnInit() {
   }
 
+  openPopupModel=(bugId)=>{
+      this.ngRedux.dispatch({type:bugTodoAction.Open_Model,bugId:bugId})
+  }
 }

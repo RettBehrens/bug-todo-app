@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgRedux, select } from '@angular-redux/store';
+import { bugTodoAction } from "../../actions/BugAction";
+import { IBugState } from "../../store/BugStore";
+import { IBugModel } from "../../models/BugModel";
 
 @Component({
   selector: 'app-bug-todo',
@@ -7,9 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BugTodoComponent implements OnInit {
 
-  constructor() { }
+  bugObject: IBugModel = {
+    bugId: 0,
+    description: '',
+    project: 'Car',
+    priority: 'Low',
+    status: ''
+  }
+
+  constructor(private ngRedux: NgRedux<IBugState>) { }
 
   ngOnInit() {
+  }
+
+  submitForm() {
+    this.ngRedux.dispatch({type: bugTodoAction.Add_NewBug, todo: this.bugObject});
+  }
+
+  clearList() {
+    this.ngRedux.dispatch({type: bugTodoAction.Remove_All, todo: this.bugObject});
   }
 
 }

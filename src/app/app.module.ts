@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { BugTodoComponent } from './bug-todo/bug-todo.component';
 import { BugStatusComponent } from './bug-status/bug-status.component';
 import { BugListComponent } from './bug-list/bug-list.component';
+import { BugInfoComponent } from './bug-info/bug-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BugTodoComponent,
     BugStatusComponent,
-    BugListComponent
+    BugListComponent,
+    BugInfoComponent
   ],
   imports: [
     BrowserModule,
